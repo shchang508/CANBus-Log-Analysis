@@ -137,8 +137,8 @@ namespace CANLog
                         ABSLight = (hexToBianry.Substring(4, 1) != "0") ? "ABS Light = ON" : "ABS Light = OFF";
                         WaterTempLight = (hexToBianry.Substring(3, 1) != "0") ? "Water Temp Light = ON" : "Water Temp Light = OFF";
                         MaintenanceLight = (hexToBianry.Substring(2, 1) != "0") ? "Maintenance Light = ON" : "Maintenance Light = OFF";
-                        FrontTirePressure = (hexToBianry.Substring(1, 1) != "0") ? "Front Tire Pressure = ON" : "Front Tire Pressure = OFF";
-                        RearTirePressure = (hexToBianry.Substring(0, 1) != "0") ? "Rear Tire Pressure = ON" : "Rear Tire Pressure = OFF";
+                        FrontTirePressure = (hexToBianry.Substring(1, 1) != "0") ? "Front Tire Low-pressure = ON" : "Front Tire Low-pressure = OFF";
+                        RearTirePressure = (hexToBianry.Substring(0, 1) != "0") ? "Rear Tyre Low-pressure = ON" : "Rear Tyre Low-pressure = OFF";
 
                         CMD_A_decode_result = string.Format("---Result: {0} , {1} , {2} , {3} , {4} , {5} , {6} , {7}"
                             , Power, OilPressureLight, FuelLight, ABSLight, WaterTempLight, MaintenanceLight, FrontTirePressure, RearTirePressure);
@@ -351,9 +351,9 @@ namespace CANLog
                         string[] commandSplit = CommandTemp.Split('=').Select(x => x.Trim()).ToArray(); //Trim items in an array;
                         string result = txt.Substring(txt.IndexOf("Result: ") + 8).Trim();
                         string[] responseSplit = result.Split(new char[2] { ',', '=' }).Select(x => x.Trim()).ToArray(); //Trim items in an array
-                        string responseResult = responseSplit[Array.IndexOf(responseSplit, commandSplit[0]) + 1].Trim();
+                        string responseResult = responseSplit[Array.FindIndex(responseSplit, t => t.Equals(commandSplit[0], StringComparison.OrdinalIgnoreCase)) + 1].Trim(); 
 
-                        List<string> cmdAList = new List<string>() { "Oil Pressure Light", "Fuel Light", "ABS Light", "Water Temp Light", "Maintenance Light", "Front Tire Pressure", "Rear Tire Pressure" };
+                        List<string> cmdAList = new List<string>() { "Oil Pressure Light", "Fuel Light", "ABS Light", "Water Temp Light", "Maintenance Light", "Front Tyre Low-pressure", "Rear Tyre Low-pressure" };
                         List<string> cmdBList = new List<string>() { "Speed", "RPM", "Fuel Consumption" };
 
                         var resultColumn = worksheet.Cell(i + 2, 6);
@@ -364,7 +364,7 @@ namespace CANLog
                             {
                                 if (ts.TotalMilliseconds < 1000)
                                 {
-                                    if (Array.IndexOf(responseSplit, commandSplit[0]) != -1)
+                                    if (Array.FindIndex(responseSplit, t => t.Equals(commandSplit[0], StringComparison.OrdinalIgnoreCase)) >= 0)
                                     {
                                         worksheet.Cell(i + 2, 4).Value = timestampForExcel; //Timestamp of response in Excel to show milliseconds
                                         worksheet.Cell(i + 2, 5).Value = string.Format("{0} = {1}", commandSplit[0], responseResult);  //Response column except for Power
