@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox_Path = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.button_SelectFile = new MaterialSkin.Controls.MaterialFlatButton();
             this.button_Decode = new System.Windows.Forms.Button();
@@ -110,6 +111,7 @@
             this.Controls.Add(this.button_SelectFile);
             this.Controls.Add(this.textBox_Path);
             this.Font = new System.Drawing.Font("Microsoft JhengHei", 9F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";
