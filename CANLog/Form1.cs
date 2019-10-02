@@ -17,8 +17,8 @@ namespace CANLog
 {
     public partial class Form1 : MaterialForm
     {
-        string[] logPathParameters;
-        public Form1(string[] args)
+        string logPathParameters;
+        public Form1(string args)
         {
             InitializeComponent();
             logPathParameters = args;
@@ -48,7 +48,7 @@ namespace CANLog
         {
             OpenFileDialog path = new OpenFileDialog();
             path.FileName = "Select a text file";
-            path.InitialDirectory = logPathParameters[0];
+            path.InitialDirectory = logPathParameters;
             path.Filter = "Text files (*.txt)|*.txt";
             path.Title = "Open text file";
             path.ShowDialog();

@@ -16,7 +16,14 @@ namespace CANLog
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(args));
+            if (args.Length == 0)
+            {
+                Application.Run(new Form1(@"D:"));
+            }
+            else
+            {
+                Application.Run(new Form1(args[0]));
+            }
         }
     }
 }
