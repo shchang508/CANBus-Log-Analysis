@@ -28,74 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox_Path = new System.Windows.Forms.TextBox();
-            this.button_SelectFile = new System.Windows.Forms.Button();
+            this.textBox_Path = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.button_SelectFile = new MaterialSkin.Controls.MaterialFlatButton();
             this.button_Decode = new System.Windows.Forms.Button();
             this.button_Generate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox_Path
             // 
-            this.textBox_Path.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Path.Location = new System.Drawing.Point(22, 32);
-            this.textBox_Path.Multiline = true;
+            this.textBox_Path.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox_Path.Depth = 0;
+            this.textBox_Path.Enabled = false;
+            this.textBox_Path.Font = new System.Drawing.Font("Microsoft JhengHei", 12F);
+            this.textBox_Path.Hint = "";
+            this.textBox_Path.Location = new System.Drawing.Point(43, 113);
+            this.textBox_Path.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox_Path.MaxLength = 32767;
+            this.textBox_Path.MouseState = MaterialSkin.MouseState.HOVER;
             this.textBox_Path.Name = "textBox_Path";
-            this.textBox_Path.Size = new System.Drawing.Size(337, 27);
-            this.textBox_Path.TabIndex = 0;
+            this.textBox_Path.PasswordChar = '\0';
+            this.textBox_Path.SelectedText = "";
+            this.textBox_Path.SelectionLength = 0;
+            this.textBox_Path.SelectionStart = 0;
+            this.textBox_Path.Size = new System.Drawing.Size(356, 23);
+            this.textBox_Path.TabIndex = 4;
+            this.textBox_Path.TabStop = false;
+            this.textBox_Path.UseSystemPasswordChar = false;
             // 
             // button_SelectFile
             // 
-            this.button_SelectFile.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_SelectFile.Location = new System.Drawing.Point(378, 32);
+            this.button_SelectFile.AutoSize = true;
+            this.button_SelectFile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button_SelectFile.Depth = 0;
+            this.button_SelectFile.Icon = null;
+            this.button_SelectFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button_SelectFile.Location = new System.Drawing.Point(399, 100);
+            this.button_SelectFile.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_SelectFile.MouseState = MaterialSkin.MouseState.HOVER;
             this.button_SelectFile.Name = "button_SelectFile";
-            this.button_SelectFile.Size = new System.Drawing.Size(104, 27);
-            this.button_SelectFile.TabIndex = 1;
+            this.button_SelectFile.Primary = false;
+            this.button_SelectFile.Size = new System.Drawing.Size(100, 36);
+            this.button_SelectFile.TabIndex = 7;
             this.button_SelectFile.Text = "Select File";
             this.button_SelectFile.UseVisualStyleBackColor = true;
             this.button_SelectFile.Click += new System.EventHandler(this.button_SelectFileClick);
             // 
             // button_Decode
             // 
-            this.button_Decode.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Decode.Location = new System.Drawing.Point(22, 116);
+            this.button_Decode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Decode.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_Decode.ForeColor = System.Drawing.Color.White;
+            this.button_Decode.Location = new System.Drawing.Point(43, 185);
             this.button_Decode.Name = "button_Decode";
-            this.button_Decode.Size = new System.Drawing.Size(144, 27);
-            this.button_Decode.TabIndex = 2;
-            this.button_Decode.Text = "Decode CAN log";
+            this.button_Decode.Size = new System.Drawing.Size(144, 35);
+            this.button_Decode.TabIndex = 8;
+            this.button_Decode.Text = "DECODE LOG";
             this.button_Decode.UseVisualStyleBackColor = true;
             this.button_Decode.Click += new System.EventHandler(this.button_Decode_Click);
             // 
             // button_Generate
             // 
-            this.button_Generate.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Generate.Location = new System.Drawing.Point(253, 116);
+            this.button_Generate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Generate.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_Generate.ForeColor = System.Drawing.Color.White;
+            this.button_Generate.Location = new System.Drawing.Point(255, 185);
             this.button_Generate.Name = "button_Generate";
-            this.button_Generate.Size = new System.Drawing.Size(106, 27);
-            this.button_Generate.TabIndex = 3;
-            this.button_Generate.Text = "Generate";
+            this.button_Generate.Size = new System.Drawing.Size(144, 35);
+            this.button_Generate.TabIndex = 9;
+            this.button_Generate.Text = "GENERATE REPORT";
             this.button_Generate.UseVisualStyleBackColor = true;
             this.button_Generate.Click += new System.EventHandler(this.button_Generate_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 261);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(547, 267);
             this.Controls.Add(this.button_Generate);
             this.Controls.Add(this.button_Decode);
             this.Controls.Add(this.button_SelectFile);
             this.Controls.Add(this.textBox_Path);
+            this.Font = new System.Drawing.Font("Microsoft JhengHei", 9F);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Sizable = false;
+            this.Text = "Report Generator";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox_Path;
-        private System.Windows.Forms.Button button_SelectFile;
+        private MaterialSkin.Controls.MaterialSingleLineTextField textBox_Path;
+        private MaterialSkin.Controls.MaterialFlatButton button_SelectFile;
         private System.Windows.Forms.Button button_Decode;
         private System.Windows.Forms.Button button_Generate;
     }
