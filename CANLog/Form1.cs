@@ -142,8 +142,10 @@ namespace CANLog
                 }
                 sr.Close();
 
-                docPath = @"D:\TestResult\"; //Location of test result files 
-                if (Directory.Exists(docPath))
+                //Location of test result files 
+                //docPath = @"D:\TestResult\"; 
+                docPath = textBox_Path.Text;
+                /*if (Directory.Exists(docPath))
                 {
                     //Diretory exists
                 }
@@ -151,10 +153,13 @@ namespace CANLog
                 {
                     //Create a new directory
                     Directory.CreateDirectory(docPath);
-                }
-                fileName = string.Format("TestResult_{0}", DateTime.Now.ToString("yyyyMMddHHmmss")); //File name of test result file 
+                }*/
+
+
+                //fileName = string.Format("TestResult_{0}", DateTime.Now.ToString("yyyyMMddHHmmss")); //File name of test result file 
+                fileName = string.Format("TestResult_{0}", Path.GetFileName(docPath).Substring(Path.GetFileName(docPath).IndexOf("_") + 1, 14));
                 txtFileName = fileName + ".txt";
-                StreamWriter sw = new StreamWriter(Path.Combine(docPath, txtFileName));
+                StreamWriter sw = new StreamWriter(Path.Combine(Path.GetDirectoryName(docPath), txtFileName));
 
                 //foreach (var content in readContent.Select((value, index) => new { value, index }))
                 foreach (string content in readContent)
@@ -165,7 +170,7 @@ namespace CANLog
                     {
                         string[] commandTimestamp = content.Split('_');
                         string[] commandSplit = content.Split(',');
-                        command = commandSplit[10].Trim();
+                        command = commandSplit[9].Trim();
                         commandList.Add(command);
                         sw.WriteLine(commandTimestamp[0].Trim() + " Command: " + command);
                     }
@@ -445,7 +450,7 @@ namespace CANLog
                     }
 
                     // Response column
-                    StreamReader txt_sr = new StreamReader(docPath + txtFileName);
+                    StreamReader txt_sr = new StreamReader(Path.Combine(Path.GetDirectoryName(docPath) + "\\" +txtFileName));
                     string txt_line = string.Empty;
                     List<string> readTxt = new List<string>(); //For saving every line in txt 
                     while (!txt_sr.EndOfStream)
@@ -856,7 +861,7 @@ namespace CANLog
                     }
                     #endregion
 
-                    workbook.SaveAs(docPath + fileName + ".xlsx");
+                    workbook.SaveAs(Path.GetDirectoryName(docPath) + "\\" + fileName + ".xlsx");
                     workbook.Dispose();
                     worksheet = null;
                     MessageBox.Show("Report is generated.", "Message");
