@@ -38,9 +38,17 @@ namespace CANLog
             this.button_Decode.FlatAppearance.BorderSize = 3;
             this.button_Decode.BackColor = System.Drawing.Color.FromArgb(16, 145, 232);
 
-            this.button_Generate.FlatAppearance.BorderColor = Color.FromArgb(16, 145, 232);
-            this.button_Generate.FlatAppearance.BorderSize = 3;
-            this.button_Generate.BackColor = System.Drawing.Color.FromArgb(16, 145, 232);
+            this.button_ExcelGenerate.FlatAppearance.BorderColor = Color.FromArgb(16, 145, 232);
+            this.button_ExcelGenerate.FlatAppearance.BorderSize = 3;
+            this.button_ExcelGenerate.BackColor = System.Drawing.Color.FromArgb(16, 145, 232);
+
+            this.button_TxtToCSV.FlatAppearance.BorderColor = Color.FromArgb(16, 145, 232);
+            this.button_TxtToCSV.FlatAppearance.BorderSize = 3;
+            this.button_TxtToCSV.BackColor = System.Drawing.Color.FromArgb(16, 145, 232);
+
+            this.button_GraphGenerate.FlatAppearance.BorderColor = Color.FromArgb(16, 145, 232);
+            this.button_GraphGenerate.FlatAppearance.BorderSize = 3;
+            this.button_GraphGenerate.BackColor = System.Drawing.Color.FromArgb(16, 145, 232);
         }
 
         // Select log file from computer 
@@ -60,18 +68,23 @@ namespace CANLog
         string fileName = string.Empty;
         string txtFileName = string.Empty;
 
-        //Raw data
+        //Raw data for CANBus log
         string line = string.Empty;
         string command = string.Empty;
         string line_CAN_ID = string.Empty;
         string line_CAN_DATA = string.Empty;
 
+        //Raw data for Power Supply log
+        string linePS = string.Empty;
+        string commandPS = string.Empty;
+        string line_PS_Command = string.Empty;
+
         // Command and response 
         List<string> commandList = new List<string>();
         List<string> responseList = new List<string>();
-        string[] commandSplit = new string[] {"", "" };
+        string[] commandSplit = new string[] { "", "" };
         string result = string.Empty;
-        string[] responseSplit = new string[] {};
+        string[] responseSplit = new string[] { };
         string responseResult = string.Empty;
         string frontTyreResponse = string.Empty;
         string rearTyreResponse = string.Empty;
@@ -113,16 +126,16 @@ namespace CANLog
         List<string> absCommandList = new List<string>();
         string absTmp = string.Empty;
         string absResponse = string.Empty;
-        string[] absResponseSplit = new string[] {};
-        string[] absToArray = new string[] {};
+        string[] absResponseSplit = new string[] { };
+        string[] absToArray = new string[] { };
 
         // CMD_F
-        List <string> OBD_dtc_List = new List<string>();
+        List<string> OBD_dtc_List = new List<string>();
         string CMD_F_decode_result = string.Empty;
         List<string> obdCommandList = new List<string>();
         string obdTmp = string.Empty;
         string obdResponse = string.Empty;
-        string[] obdResponseSplit = new string[] {};
+        string[] obdResponseSplit = new string[] { };
         string[] obdToArray = new string[] { };
 
         // Convert hex to text in CAN log
@@ -450,7 +463,7 @@ namespace CANLog
                     }
 
                     // Response column
-                    StreamReader txt_sr = new StreamReader(Path.Combine(Path.GetDirectoryName(docPath) + "\\" +txtFileName));
+                    StreamReader txt_sr = new StreamReader(Path.Combine(Path.GetDirectoryName(docPath) + "\\" + txtFileName));
                     string txt_line = string.Empty;
                     List<string> readTxt = new List<string>(); //For saving every line in txt 
                     while (!txt_sr.EndOfStream)
@@ -867,7 +880,8 @@ namespace CANLog
                     MessageBox.Show("Report is generated.", "Message");
                     textBox_Path.Clear();
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Please decode a log file first!", "Error");
             }
@@ -1142,9 +1156,44 @@ namespace CANLog
                     break;
             }
         }
+
+        private void button_TxtToCSV_Click(object sender, EventArgs e)
+        {
+            if (textBox_Path.Text != "")
+            {
+                List<string> readContent = new List<string>(); //For saving every line 
+                StreamReader sr = new StreamReader(textBox_Path.Text);
+                while (!sr.EndOfStream)
+                {
+                    linePS = sr.ReadLine();
+                    if (!string.IsNullOrEmpty(line))
+                    {
+                        readContent.Add(line);
+                    }
+                }
+                sr.Close();
+
+                docPath = textBox_Path.Text;
+                fileName = string.Format("CsvForGraph_{0}", Path.GetFileName(docPath).Substring(Path.GetFileName(docPath).IndexOf("_") + 1, 14));
+                txtFileName = fileName + ".csv";
+                StreamWriter sw = new StreamWriter(Path.Combine(Path.GetDirectoryName(docPath), txtFileName));
+
+                foreach (string content in readContent)
+                {
+                    //Get command from log
+                    string command_PowerSupply = "VSET1:";
+                    if (content.Contains(command_PowerSupply)) //Check if this line is a Power Supply command
+                    {
+                        string[] commandSplit = content.Split(',');
+                        commandPS = commandSplit[5].Substring(content.IndexOf(command_PowerSupply) + 6, 3).Trim();
+                        //sw.WriteLine("Power Supply Command: " + commandPS);
+                        Console.WriteLine("Power Supply Command: " + commandPS);
+                    }
+                }
+            }
+        }
     }
 }
-
 
 
 

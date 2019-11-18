@@ -32,7 +32,13 @@
             this.textBox_Path = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.button_SelectFile = new MaterialSkin.Controls.MaterialFlatButton();
             this.button_Decode = new System.Windows.Forms.Button();
-            this.button_Generate = new System.Windows.Forms.Button();
+            this.button_ExcelGenerate = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_GraphGenerate = new System.Windows.Forms.Button();
+            this.button_TxtToCSV = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_Path
@@ -79,7 +85,7 @@
             this.button_Decode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Decode.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Decode.ForeColor = System.Drawing.Color.White;
-            this.button_Decode.Location = new System.Drawing.Point(43, 185);
+            this.button_Decode.Location = new System.Drawing.Point(16, 22);
             this.button_Decode.Name = "button_Decode";
             this.button_Decode.Size = new System.Drawing.Size(144, 35);
             this.button_Decode.TabIndex = 8;
@@ -87,27 +93,74 @@
             this.button_Decode.UseVisualStyleBackColor = true;
             this.button_Decode.Click += new System.EventHandler(this.button_Decode_Click);
             // 
-            // button_Generate
+            // button_ExcelGenerate
             // 
-            this.button_Generate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_Generate.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_Generate.ForeColor = System.Drawing.Color.White;
-            this.button_Generate.Location = new System.Drawing.Point(255, 185);
-            this.button_Generate.Name = "button_Generate";
-            this.button_Generate.Size = new System.Drawing.Size(144, 35);
-            this.button_Generate.TabIndex = 9;
-            this.button_Generate.Text = "GENERATE REPORT";
-            this.button_Generate.UseVisualStyleBackColor = true;
-            this.button_Generate.Click += new System.EventHandler(this.button_Generate_Click);
+            this.button_ExcelGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_ExcelGenerate.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_ExcelGenerate.ForeColor = System.Drawing.Color.White;
+            this.button_ExcelGenerate.Location = new System.Drawing.Point(184, 22);
+            this.button_ExcelGenerate.Name = "button_ExcelGenerate";
+            this.button_ExcelGenerate.Size = new System.Drawing.Size(144, 35);
+            this.button_ExcelGenerate.TabIndex = 9;
+            this.button_ExcelGenerate.Text = "GENERATE REPORT";
+            this.button_ExcelGenerate.UseVisualStyleBackColor = true;
+            this.button_ExcelGenerate.Click += new System.EventHandler(this.button_Generate_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button_ExcelGenerate);
+            this.groupBox1.Controls.Add(this.button_Decode);
+            this.groupBox1.Location = new System.Drawing.Point(43, 159);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(343, 67);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Canbus Log";
+            // 
+            // button_GraphGenerate
+            // 
+            this.button_GraphGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_GraphGenerate.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_GraphGenerate.ForeColor = System.Drawing.Color.White;
+            this.button_GraphGenerate.Location = new System.Drawing.Point(184, 22);
+            this.button_GraphGenerate.Name = "button_GraphGenerate";
+            this.button_GraphGenerate.Size = new System.Drawing.Size(144, 35);
+            this.button_GraphGenerate.TabIndex = 9;
+            this.button_GraphGenerate.Text = "GENERATE GRAPH";
+            this.button_GraphGenerate.UseVisualStyleBackColor = true;
+            // 
+            // button_TxtToCSV
+            // 
+            this.button_TxtToCSV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_TxtToCSV.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_TxtToCSV.ForeColor = System.Drawing.Color.White;
+            this.button_TxtToCSV.Location = new System.Drawing.Point(16, 22);
+            this.button_TxtToCSV.Name = "button_TxtToCSV";
+            this.button_TxtToCSV.Size = new System.Drawing.Size(144, 35);
+            this.button_TxtToCSV.TabIndex = 8;
+            this.button_TxtToCSV.Text = "LOG TO CSV";
+            this.button_TxtToCSV.UseVisualStyleBackColor = true;
+            this.button_TxtToCSV.Click += new System.EventHandler(this.button_TxtToCSV_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button_GraphGenerate);
+            this.groupBox2.Controls.Add(this.button_TxtToCSV);
+            this.groupBox2.Location = new System.Drawing.Point(43, 242);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(343, 67);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Power Supply Log";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(547, 267);
-            this.Controls.Add(this.button_Generate);
-            this.Controls.Add(this.button_Decode);
+            this.ClientSize = new System.Drawing.Size(534, 334);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_SelectFile);
             this.Controls.Add(this.textBox_Path);
             this.Font = new System.Drawing.Font("Microsoft JhengHei", 9F);
@@ -117,6 +170,9 @@
             this.Name = "Form1";
             this.Sizable = false;
             this.Text = "Report Generator";
+            this.TopMost = true;
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,7 +182,11 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField textBox_Path;
         private MaterialSkin.Controls.MaterialFlatButton button_SelectFile;
         private System.Windows.Forms.Button button_Decode;
-        private System.Windows.Forms.Button button_Generate;
+        private System.Windows.Forms.Button button_ExcelGenerate;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button_GraphGenerate;
+        private System.Windows.Forms.Button button_TxtToCSV;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 
