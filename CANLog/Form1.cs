@@ -175,12 +175,13 @@ namespace CANLog
                 foreach (string content in readContent)
                 {
                     //Get commands from CAN log
-                    List<string> commandCheckList = new List<string> { "_HEX", "_ascii", "_K_ABS", "_K_OBD", "_K_SEND", "_K_CLEAR", "_Temperature", "_FuelDisplay", "_WaterTemp" };
-                    if (commandCheckList.Any(content.Contains)) //Check if this line is a command
+                    //List<string> commandCheckList = new List<string> { "_HEX", "_ascii", "_K_ABS", "_K_OBD", "_K_SEND", "_K_CLEAR", "_Temperature", "_FuelDisplay", "_WaterTemp" };
+                    //if (commandCheckList.Any(content.Contains)) //Check if this line is a command
+                    if (content.Contains("Schedule"))
                     {
                         string[] commandTimestamp = content.Split('_');
                         string[] commandSplit = content.Split(',');
-                        command = commandSplit[9].Trim();
+                        command = commandSplit[8].Trim();
                         commandList.Add(command);
                         sw.WriteLine(commandTimestamp[0].Trim() + " Command: " + command);
                     }
