@@ -167,7 +167,7 @@ namespace CANLog
 
 
                 //fileName = string.Format("TestResult_{0}", DateTime.Now.ToString("yyyyMMddHHmmss")); //File name of test result file 
-                fileName = string.Format("TestResult_{0}", Path.GetFileName(docPath).Substring(Path.GetFileName(docPath).IndexOf("_") + 1, 14));
+                fileName = string.Format("TestResult_{0}", Path.GetFileName(docPath));
                 txtFileName = fileName + ".txt";
                 StreamWriter sw = new StreamWriter(Path.Combine(Path.GetDirectoryName(docPath), txtFileName));
 
@@ -1179,7 +1179,7 @@ namespace CANLog
                 sr.Close();
 
                 docPath = textBox_Path.Text;
-                fileName = string.Format("CsvForGraph_{0}", Path.GetFileName(docPath).Substring(Path.GetFileName(docPath).IndexOf("_") + 1, 14));
+                fileName = string.Format("CsvForGraph_{0}", Path.GetFileName(docPath));
                 txtFileName = fileName + ".csv";
                 csvDestination = Path.Combine(Path.GetDirectoryName(docPath), txtFileName);
                 StreamWriter sw = new StreamWriter(csvDestination);
